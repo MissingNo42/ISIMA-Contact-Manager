@@ -1,0 +1,149 @@
+﻿<Window
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:local="clr-namespace:Contact_Manager_UIX"
+		xmlns:DataManager="clr-namespace:DataManager;assembly=DataManager" x:Class="Contact_Manager_UIX.MainWindow"
+		mc:Ignorable="d"
+		Title="Contact Manager" MinWidth="878">
+
+	<Grid Margin="15">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+
+		<StackPanel Orientation="Horizontal" Margin="0,0,10,10">
+			<Label Content="Mot de passe" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,10,0"/>
+			<PasswordBox HorizontalAlignment="Left" VerticalAlignment="Center" Width="150" x:Name="password" Padding="3" Margin="0,0,10,0"/>
+			<Button Content="Charger" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Load" Padding="8,3" Margin="0,0,10,0"/>
+			<Button Content="Sauvegarder" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Save" Padding="8,3"/>
+		</StackPanel>
+
+		<ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Margin="0,0,10,0">
+			<TreeView x:Name="treeView"/>
+		</ScrollViewer>
+
+		<Grid Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" MinWidth="240">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition/>
+				<RowDefinition Height="Auto"/>
+			</Grid.RowDefinitions>
+
+			<Grid Margin="0,0,0,10">
+				<Grid.RowDefinitions>
+					<RowDefinition/>
+					<RowDefinition/>
+					<RowDefinition Height="5"/>
+					<RowDefinition/>
+					<RowDefinition Height="5"/>
+					<RowDefinition/>
+					<RowDefinition Height="5"/>
+					<RowDefinition/>
+					<RowDefinition Height="5"/>
+					<RowDefinition/>
+					<RowDefinition Height="5"/>
+					<RowDefinition/>
+					<RowDefinition Height="5"/>
+					<RowDefinition/>
+					<RowDefinition Height="10"/>
+					<RowDefinition/>
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="2*"/>
+					<ColumnDefinition Width="5*"/>
+				</Grid.ColumnDefinitions>
+
+				<Label Content="Contact" HorizontalAlignment="Center" Grid.ColumnSpan="2"/>
+
+
+				<Label Content="Modifié le" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="1"/>
+				<TextBox x:Name="contactModified" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" IsEnabled="False" Grid.Row="1" Grid.Column="1"/>
+				<Label Content="Créé le" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="3"/>
+				<TextBox x:Name="contactCreated" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" IsEnabled="False" Grid.Row="3" Grid.Column="1"/>
+
+				<Label Content="Nom" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="5"/>
+				<TextBox x:Name="contactFirstName" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" IsEnabled="False" Grid.Row="5" Grid.Column="1"/>
+				<Label Content="Prénom" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="7"/>
+				<TextBox x:Name="contactName" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" IsEnabled="False" Grid.Row="7" Grid.Column="1"/>
+				<Label Content="Entreprise" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="9"/>
+				<TextBox x:Name="contactCompany" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" IsEnabled="False" Grid.Row="9" Grid.Column="1"/>
+				<Label Content="Adresse mail" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="11"/>
+				<TextBox x:Name="contactMailAddress" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" IsEnabled="False" Grid.Row="11" Grid.Column="1"/>
+				<Label Content="Relation" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="13"/>
+				<ComboBox x:Name="contactRelation" HorizontalAlignment="Stretch" VerticalAlignment="Center" IsEnabled="False" Grid.Row="13" Grid.Column="1">
+					<ComboBoxItem Content="Amis"/>
+					<ComboBoxItem Content="Collègue"/>
+					<ComboBoxItem Content="Réseau"/>
+					<ComboBoxItem Content="Autre"/>
+				</ComboBox>
+				<Button x:Name="btnAddContact" Content="Ajouter" HorizontalAlignment="Stretch" VerticalAlignment="Center" Click="AddOrUpdateContact" IsEnabled="False" Grid.ColumnSpan="2" Grid.Row="16" Padding="8,3"/>
+			</Grid>
+
+			<Grid Grid.Row="2" Margin="0,0,0,10">
+				<Grid.RowDefinitions>
+					<RowDefinition/>
+					<RowDefinition/>
+					<RowDefinition Height="10"/>
+					<RowDefinition/>
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="2*"/>
+					<ColumnDefinition Width="5*"/>
+				</Grid.ColumnDefinitions>
+
+				<Label Content="Dossier" HorizontalAlignment="Center" Grid.ColumnSpan="2"/>
+				<Label Content="Nom" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="1"/>
+				<TextBox x:Name="folderName" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" IsEnabled="False" Grid.Row="1" Grid.Column="1"/>
+				<Button x:Name="btnAddFolder" Content="Ajouter" HorizontalAlignment="Stretch" VerticalAlignment="Center" Click="AddFolder" IsEnabled="False" Grid.ColumnSpan="2" Grid.Row="3" Padding="8,3"/>
+			</Grid>
+
+			<Grid Grid.Row="4">
+				<Grid.RowDefinitions>
+					<RowDefinition/>
+					<RowDefinition/>
+					<RowDefinition Height="5"/>
+					<RowDefinition/>
+					<RowDefinition Height="5"/>
+					<RowDefinition/>
+					<RowDefinition Height="5"/>
+					<RowDefinition/>
+					<RowDefinition Height="10"/>
+					<RowDefinition/>
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="2*"/>
+					<ColumnDefinition Width="5*"/>
+				</Grid.ColumnDefinitions>
+
+				<Label Content="Dossier courrant" HorizontalAlignment="Center" Grid.ColumnSpan="2"/>
+				<Label Content="Chemin" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="1"/>
+				<TextBox x:Name="folderPath" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" IsEnabled="False" Grid.Row="1" Grid.Column="1"/>
+				<Label Content="Modifié le" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="3"/>
+				<TextBox x:Name="folderModified" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" IsEnabled="False" Grid.Row="3" Grid.Column="1"/>
+				<Label Content="Créé le" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="5"/>
+				<TextBox x:Name="folderCreated" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" IsEnabled="False" Grid.Row="5" Grid.Column="1"/>
+				<Label Content="Nom" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="7"/>
+				<TextBox x:Name="folderRename" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" IsEnabled="False" Grid.Row="7" Grid.Column="1"/>
+				
+				<Grid Grid.Row="9" Grid.ColumnSpan="2">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition/>
+						<ColumnDefinition/>
+					</Grid.ColumnDefinitions>
+
+					<Button x:Name="btnClear" Content="Vider" HorizontalAlignment="Stretch" VerticalAlignment="Center" Click="ClearFolder" IsEnabled="False" Grid.Row="2" Margin="0,0,5,0" Padding="8,3"/>
+					<Button x:Name="btnRename" Content="Renommer" HorizontalAlignment="Stretch" VerticalAlignment="Center" Click="UpdateFolder" IsEnabled="False" Grid.Column="1" Grid.Row="2" Margin="5,0,0,0" Padding="8,3"/>
+				</Grid>
+			</Grid>
+		</Grid>
+	</Grid>
+</Window>
